@@ -40,45 +40,70 @@ function mouseWheel(event) {
 
 var particles, cnv, s, count, sugarDisplay;
 
-
 $(document).ready(function() {
   sugarDisplay = document.getElementById('sugarCount');
 });
 
 function setup() {
-  cnv = createCanvas(windowWidth, windowHeight - 80);
-  //cnv.mousePressed(createParticle);
+  cnv = createCanvas(512, windowHeight - 80);
+  img = loadImage("assets/common/images/bowl2.png");
+  img2 = loadImage("assets/common/images/bowl_with_gray.png");
   particles = [];
   count = 0;
 }
 
 function draw() {
-  background(51);
-  background(0);
+  background('#969696');
 
-  s = 'Sugar (mg): ' + count.toString();
-  sugarDisplay.innerHTML = s;
+  if (count <= 11500) {
+    s = 'Sugar (mg): ' + count.toString();
+    sugarDisplay.innerHTML = s;
+  }
 
   if (mouseIsPressed) {
     createParticle();
+    createParticle();
   }
+
+  fill(255);
+  stroke(0);
+  strokeWeight(0);
+  rectMode(CENTER);
+  imageMode(CENTER);
+
+  if (count <= 11500) {
+    rect(windowWidth/5, windowHeight - 80, windowWidth/2, (count/15) * -1);
+  } else {
+    rect(windowWidth/5, windowHeight - 80, windowWidth/2, (11500/15) * -1);
+  }
+
+  image(img2, windowWidth/5, (windowHeight - 80)/1.34);
 
   for (i = 0; i < particles.length; i++) {
     particles[i].run();
   }
 
+  image(img, windowWidth/5, (windowHeight - 80)/1.38);
+
+  noFill();
+  stroke(0);
+  strokeWeight(40);
+  arc(width/2, height/1.45, 420, 380, (13/12)*PI, (23/12)*PI);
+
+
   if (particles.length==0) {
     fill(255);
     textAlign(CENTER);
     textSize(32);
-    text("click mouse to add particles", width/2, height/2);
+    strokeWeight(0);
+    text("click mouse to add sugar", width/2, height/4);
   }
 }
 
 function createParticle() {
   p = new Particle(createVector(mouseX, mouseY));
   particles.push(p);
-  count += 5;
+  count += 10;
 }
 
 // A simple Particle class
@@ -86,6 +111,7 @@ var Particle = function(position) {
   this.acceleration = createVector(0, 0.5);
   this.velocity = createVector(random(-1, 1), 0);
   this.position = position.copy();
+  this.lifespan = 400;
 };
 
 Particle.prototype.run = function() {
@@ -103,6 +129,12 @@ Particle.prototype.update = function(){
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
   }
+
+  this.lifespan -= 2;
+
+  if (this.isDead()) {
+    particles.splice(i, 1);
+  }
 };
 
 // Method to display
@@ -111,4 +143,13 @@ Particle.prototype.display = function () {
   strokeWeight(2);
   fill(127, this.lifespan);
   rect(this.position.x, this.position.y, 1, 1);
+};
+
+// Is the particle still useful?
+Particle.prototype.isDead = function () {
+  if (this.lifespan < 0) {
+    return true;
+  } else {
+    return false;
+  }
 };

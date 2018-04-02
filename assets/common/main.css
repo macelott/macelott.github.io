@@ -48,7 +48,12 @@ table {
 }
 /* CSS reset ends here */
 
+body {
+	background-color: #969696;
+}
+
 h1 {
+	background-color: white;
 	font-family: 'Helvetica', 'Arial', sans-serif;
   color: #444444;
   font-size: 36pt;
@@ -66,10 +71,14 @@ h1 {
 
 img {
 	margin-top: 20px;
-	margin-left: 3%;
-	position: fixed;
+	margin-left: 35px;
 	width: 100px;
 	height: 100px;
 	max-width: 100%;
   max-height: 100%;
+}
+
+canvas {
+	margin-left: 30%;
+	margin-right: 30%;
 }
