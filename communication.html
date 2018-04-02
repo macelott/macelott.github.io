@@ -9,20 +9,59 @@
 <body id="bodyWhite">
 
   <h1>Design For Understanding: Food</h1>
-  <h2>Fruits</h2>
-  <image class="graphs" src="assets/common/images/fruits/fruit_calories.png">
-  <image class="graphs" src="assets/common/images/fruits/fruit_sugar.png">
-  <image class="graphs" src="assets/common/images/fruits/fruit_protein.png">
+  <button onclick="showGraphs(1)" id="heading-fruit">Fruits ▼</button>
+  <div id="dropdown-fruit">
+    <image class="graphs" src="assets/common/images/fruits/fruit_table.png">
+      <image class="graphs" src="assets/common/images/fruits/fruit_calories.png">
+    <image class="graphs" src="assets/common/images/fruits/fruit_sugar.png">
+    <image class="graphs" src="assets/common/images/fruits/fruit_protein.png">
+  </div>
 
-  <h2>Vegetables</h2>
-  <image class="graphs" src="assets/common/images/vegetables/veg_calories.png">
-  <image class="graphs" src="assets/common/images/vegetables/veg_sugar.png">
-  <image class="graphs" src="assets/common/images/vegetables/veg_protein.png">
+  <button onclick="showGraphs(2)" id="heading-veg">Vegetables ▼</button>
+  <div id="dropdown-veg">
+    <image class="graphs" src="assets/common/images/vegetables/veg_table.png">
+      <image class="graphs" src="assets/common/images/vegetables/veg_calories.png">
+    <image class="graphs" src="assets/common/images/vegetables/veg_sugar.png">
+    <image class="graphs" src="assets/common/images/vegetables/veg_protein.png">
+  </div>
 
-  <h2>Meats</h2>
-  <image class="graphs" src="assets/common/images/meat/meat_calories.png">
-  <image class="graphs" src="assets/common/images/meat/meat_sugar.png">
-  <image class="graphs" src="assets/common/images/meat/meat_protein.png">
+  <button onclick="showGraphs(3)" id="heading-meat">Meats ▼</button>
+  <div id="dropdown-meat">
+    <image class="graphs" src="assets/common/images/meat/meat_table.png">
+      <image class="graphs" src="assets/common/images/meat/meat_calories.png">
+    <image class="graphs" src="assets/common/images/meat/meat_sugar.png">
+    <image class="graphs" src="assets/common/images/meat/meat_protein.png">
+  </div>
+
+  <script>
+  var fruit = 0;
+  var veg = 0;
+  var meat = 0;
+
+  function showGraphs(option) {
+
+    if (option == 1 && fruit == 0) {
+      document.getElementById("dropdown-fruit").style.display = "block";
+      fruit = 1;
+    } else if (option == 2 && veg == 0) {
+      document.getElementById("dropdown-veg").style.display = "block";
+      veg = 1;
+    } else if (option == 3 && meat == 0) {
+      document.getElementById("dropdown-meat").style.display = "block";
+      meat = 1;
+    } else if (option == 1 && fruit == 1) {
+      document.getElementById("dropdown-fruit").style.display = "none";
+      fruit = 0;
+    } else if (option == 2 && veg == 1) {
+      document.getElementById("dropdown-veg").style.display = "none";
+      veg = 0;
+    } else if (option == 3 && meat == 1) {
+      document.getElementById("dropdown-meat").style.display = "none";
+      meat = 0;
+    }
+  }
+
+  </script>
 
 </body>
 </html>
