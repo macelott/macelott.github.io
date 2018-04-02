@@ -38,7 +38,7 @@ function mouseWheel(event) {
 }
 */
 
-var particles, cnv, s, count, sugarDisplay;
+var particles, cnv, s, count, sugarDisplay, shapeHeight;
 
 $(document).ready(function() {
   sugarDisplay = document.getElementById('sugarCount');
@@ -50,6 +50,7 @@ function setup() {
   img2 = loadImage("assets/common/images/bowl_with_gray2.png");
   particles = [];
   count = 0;
+  shapeHeight = 0;
 }
 /*
 function windowResized() {
@@ -59,7 +60,7 @@ function windowResized() {
 function draw() {
   background('#969696');
 
-  if (count <= 11500) {
+  if (count <= 112000) {
     s = 'Sugar (mg): ' + count.toString();
     sugarDisplay.innerHTML = s;
   }
@@ -75,10 +76,10 @@ function draw() {
   rectMode(CENTER);
   imageMode(CENTER);
 
-  if (count <= 11500) {
-    rect(windowWidth/5, windowHeight - 80, windowWidth/2.9, (count/15) * -1);
+  if (shapeHeight <= (height * 1.12)) {
+    rect(windowWidth/5, windowHeight - 80, windowWidth/2.9, shapeHeight);
   } else {
-    rect(windowWidth/5, windowHeight - 80, windowWidth/2.8, (11500/15) * -1);
+    rect(windowWidth/5, windowHeight - 80, windowWidth/2.8, height * 1.12);
   }
 
   image(img2, windowWidth/5, (windowHeight - 80)/1.34, width, (height/1.5));
@@ -107,6 +108,7 @@ function createParticle() {
   p = new Particle(createVector(mouseX, mouseY));
   particles.push(p);
   count += 100;
+  shapeHeight += 5;
 }
 
 // A simple Particle class
