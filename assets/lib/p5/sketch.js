@@ -108,7 +108,7 @@ function createParticle() {
   p = new Particle(createVector(mouseX, mouseY));
   particles.push(p);
   count += 100;
-  shapeHeight += 0.6;
+  shapeHeight += height * 1.12 * 0.0009;
 }
 
 // A simple Particle class
@@ -116,7 +116,7 @@ var Particle = function(position) {
   this.acceleration = createVector(0, 0.5);
   this.velocity = createVector(random(-1, 1), 0);
   this.position = position.copy();
-  this.lifespan = 400;
+  this.lifespan = 300;
 };
 
 Particle.prototype.run = function() {
