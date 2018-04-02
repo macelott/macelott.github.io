@@ -46,6 +46,26 @@ $(document).ready(function() {
   foodText =  document.getElementById('foodDesc');
 });
 
+function preloadMyImages() {
+    var imageList = [
+        "assets/common/images/potato.png",
+        "assets/common/images/hotdog.png",
+        "assets/common/images/bread.png",
+        "assets/common/images/dressing.png",
+        "assets/common/images/ketchup.png",
+        "assets/common/images/icecream.png",
+        "assets/common/images/poptart.png",
+        "assets/common/images/cereal.png"
+    ];
+    for(var i = 0; i < imageList.length; i++ )
+    {
+        var imageObject = new Image();
+        imageObject.src = imageList[i];
+    }
+
+    console.log("Images Preloaded");
+}
+
 function setup() {
   cnv = createCanvas(windowWidth/2.5, windowHeight - 80);
   img = loadImage("assets/common/images/bowl2.png");
