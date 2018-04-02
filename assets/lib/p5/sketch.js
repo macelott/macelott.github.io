@@ -87,8 +87,10 @@ function draw() {
     sugarDisplay.innerHTML = s;
   }
 
-  if (mouseIsPressed) {
+  if (mouseIsPressed && count > 11000) {
     createParticle();
+    createParticle();
+  } else if (mouseIsPressed) {
     createParticle();
   }
 
@@ -154,6 +156,7 @@ function createParticle() {
     displayImage.src = "assets/common/images/hotdog.png";
     foodDesc.innerHTML = "1 hotdog";
   } else if (count >= 1000) {
+    displayImage.style.visibility = "visible";
     displayImage.src = "assets/common/images/potato.png";
     foodDesc.innerHTML = "1 potato";
   }
