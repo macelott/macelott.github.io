@@ -47,7 +47,7 @@ $(document).ready(function() {
 function setup() {
   cnv = createCanvas(windowWidth/2.5, windowHeight - 80);
   img = loadImage("assets/common/images/bowl2.png");
-  img2 = loadImage("assets/common/images/bowl_with_gray.png");
+  img2 = loadImage("assets/common/images/bowl_with_gray2.png");
   particles = [];
   count = 0;
 }
@@ -92,7 +92,6 @@ function draw() {
   noFill();
   stroke(0);
   strokeWeight(40);
-  arc(width/2, height/1.45, 420, 380, (13/12)*PI, (23/12)*PI);
 
 
   if (particles.length==0) {
