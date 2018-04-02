@@ -62,33 +62,6 @@ function windowResized() {
 function draw() {
   background('#969696');
 
-  if (count >= 112000) {
-    displayImage.src = "assets/common/images/cereal.png";
-    foodDesc.innerHTML = "1 bowl(1.5 cups)";
-  } else if (count >= 40000) {
-    displayImage.src = "assets/common/images/poptart.png";
-    foodDesc.innerHTML = "2 pastry";
-  } else if (count >= 16000) {
-    displayImage.src = "assets/common/images/icecream.png";
-    foodDesc.innerHTML = "1 cone";
-  } else if (count >= 11000) {
-    displayImage.src = "assets/common/images/ketchup.png";
-    foodDesc.innerHTML = "3 tbsp";
-  } else if (count >= 8000) {
-    displayImage.src = "assets/common/images/dressing.png";
-    foodDesc.innerHTML = "4 tbsp";
-  } else if (count >= 4000) {
-    displayImage.src = "assets/common/images/bread.png";
-    foodDesc.innerHTML = "~1 slice";
-  } else if (count >= 2000) {
-    displayImage.src = "assets/common/images/hotdog.png";
-    foodDesc.innerHTML = "1 hotdog";
-  } else if (count >= 1000) {
-    displayImage.src = "assets/common/images/potato.png";
-    foodDesc.innerHTML = "1 potato";
-  }
-
-
   if (count <= 112000) {
     s = 'Sugar (mg): ' + count.toString();
     sugarDisplay.innerHTML = s;
@@ -138,6 +111,32 @@ function createParticle() {
   particles.push(p);
   count += 100;
   shapeHeight += height * 1.12 * 0.0009;
+
+  if (count >= 112000) {
+    displayImage.src = "assets/common/images/cereal.png";
+    foodDesc.innerHTML = "1 bowl(1.5 cups)";
+  } else if (count >= 40000) {
+    displayImage.src = "assets/common/images/poptart.png";
+    foodDesc.innerHTML = "2 pastry";
+  } else if (count >= 16000) {
+    displayImage.src = "assets/common/images/icecream.png";
+    foodDesc.innerHTML = "1 cone";
+  } else if (count >= 11000) {
+    displayImage.src = "assets/common/images/ketchup.png";
+    foodDesc.innerHTML = "3 tbsp";
+  } else if (count >= 8000) {
+    displayImage.src = "assets/common/images/dressing.png";
+    foodDesc.innerHTML = "4 tbsp";
+  } else if (count >= 4000) {
+    displayImage.src = "assets/common/images/bread.png";
+    foodDesc.innerHTML = "~1 slice";
+  } else if (count >= 2000) {
+    displayImage.src = "assets/common/images/hotdog.png";
+    foodDesc.innerHTML = "1 hotdog";
+  } else if (count >= 1000) {
+    displayImage.src = "assets/common/images/potato.png";
+    foodDesc.innerHTML = "1 potato";
+  }
 }
 
 // A simple Particle class
