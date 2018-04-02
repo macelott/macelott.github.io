@@ -52,6 +52,10 @@ body {
 	background-color: #969696;
 }
 
+#bodyWhite {
+	background-color: white;
+}
+
 h1 {
 	background-color: white;
 	font-family: 'Helvetica', 'Arial', sans-serif;
@@ -63,7 +67,7 @@ h1 {
 
 h2 {
 	font-family: 'Helvetica', 'Arial', sans-serif;
-  color: white;
+  color: gray;
 	text-align: center;
 	font-size: 30pt;
 	padding: 40px 0 5px 0;
