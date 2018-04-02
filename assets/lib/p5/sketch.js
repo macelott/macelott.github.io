@@ -100,7 +100,7 @@ function draw() {
     textAlign(CENTER);
     textSize(32);
     strokeWeight(0);
-    text("click mouse to add sugar", width/2, height/4);
+    text("click and hold to add sugar", width/2, height/4);
   }
 }
 
@@ -108,7 +108,7 @@ function createParticle() {
   p = new Particle(createVector(mouseX, mouseY));
   particles.push(p);
   count += 100;
-  shapeHeight += 5;
+  shapeHeight += 0.6;
 }
 
 // A simple Particle class
