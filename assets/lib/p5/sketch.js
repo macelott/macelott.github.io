@@ -45,13 +45,17 @@ $(document).ready(function() {
 });
 
 function setup() {
-  cnv = createCanvas(512, windowHeight - 80);
+  cnv = createCanvas(windowWidth/2.5, windowHeight - 80);
   img = loadImage("assets/common/images/bowl2.png");
   img2 = loadImage("assets/common/images/bowl_with_gray.png");
   particles = [];
   count = 0;
 }
-
+/*
+function windowResized() {
+  resizeCanvas(windowWidth/3, windowHeight);
+}
+*/
 function draw() {
   background('#969696');
 
@@ -72,9 +76,9 @@ function draw() {
   imageMode(CENTER);
 
   if (count <= 11500) {
-    rect(windowWidth/5, windowHeight - 80, windowWidth/2, (count/15) * -1);
+    rect(windowWidth/5, windowHeight - 80, windowWidth/3, (count/15) * -1);
   } else {
-    rect(windowWidth/5, windowHeight - 80, windowWidth/2, (11500/15) * -1);
+    rect(windowWidth/5, windowHeight - 80, windowWidth/3, (11500/15) * -1);
   }
 
   image(img2, windowWidth/5, (windowHeight - 80)/1.34);
