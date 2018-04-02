@@ -76,18 +76,18 @@ function draw() {
   imageMode(CENTER);
 
   if (count <= 11500) {
-    rect(windowWidth/5, windowHeight - 80, windowWidth/3, (count/15) * -1);
+    rect(windowWidth/5, windowHeight - 80, windowWidth/2.9, (count/15) * -1);
   } else {
-    rect(windowWidth/5, windowHeight - 80, windowWidth/3, (11500/15) * -1);
+    rect(windowWidth/5, windowHeight - 80, windowWidth/2.8, (11500/15) * -1);
   }
 
-  image(img2, windowWidth/5, (windowHeight - 80)/1.34);
+  image(img2, windowWidth/5, (windowHeight - 80)/1.34, width, (height/1.5));
 
   for (i = 0; i < particles.length; i++) {
     particles[i].run();
   }
 
-  image(img, windowWidth/5, (windowHeight - 80)/1.38);
+  image(img, windowWidth/5, (windowHeight - 80)/1.38, width, (height/1.5));
 
   noFill();
   stroke(0);
@@ -107,7 +107,7 @@ function draw() {
 function createParticle() {
   p = new Particle(createVector(mouseX, mouseY));
   particles.push(p);
-  count += 10;
+  count += 100;
 }
 
 // A simple Particle class
