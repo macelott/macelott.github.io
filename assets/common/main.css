@@ -67,10 +67,10 @@ h1 {
 
 h2 {
 	font-family: 'Helvetica', 'Arial', sans-serif;
-  color: gray;
+  color: #666666;
 	text-align: center;
 	font-size: 30pt;
-	padding: 40px 0 5px 0;
+	padding: 15px 0 15px 0;
 }
 
 .big-links {
@@ -146,9 +146,7 @@ header {
 	background-color: white;
 	max-width: 740px;
 	margin: auto;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-top: 20px;
+	padding: 20px;
 }
 
 p {
@@ -159,6 +157,7 @@ p {
 	font-size: 22px;
 	line-height: 1.58;
 	letter-spacing: -.003em;
+	margin-bottom: 30px;
 }
 
 strong {
