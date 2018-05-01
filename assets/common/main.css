@@ -73,7 +73,7 @@ h2 {
 	padding: 40px 0 5px 0;
 }
 
-a {
+.big-links {
 	display: block;
 	font-family: 'Helvetica', 'Arial', sans-serif;
   color: white;
@@ -152,9 +152,15 @@ header {
 }
 
 p {
-	font-weight: 350;
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	color: #444444;
+	font-weight: 100;
 	font-style: normal;
 	font-size: 22px;
 	line-height: 1.58;
 	letter-spacing: -.003em;
+}
+
+strong {
+	font-weight: bold;
 }
