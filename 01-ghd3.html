@@ -1,0 +1,262 @@
+<html>
+
+<head>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <style>
+    body {
+      margin-bottom: 1%;
+    }
+
+    svg {
+      margin-left: 1%;
+      height: 100%;
+      width: 100%;
+      flex-grow: 1;
+      background-color: #bfbfbf;
+    }
+
+    rect,
+    circle {
+      stroke: black
+    }
+
+    .container {
+      display: flex;
+      margin: 1% 1% 0 0;
+      height: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="banner" class="container"></div>
+  <div id="row1" class="container"></div>
+  <div id="row2" class="container"></div>
+</body>
+
+<script>
+  console.log(d3); // test if d3 is loaded
+  
+  // Add SVG's to appropriate containers
+  var svg5 = d3.select("#banner").append("svg").attr("id", "svg5");
+  var svg5Height = document.getElementById("svg5").getBoundingClientRect().height,
+      svg5Width = document.getElementById("svg5").getBoundingClientRect().width;
+
+  var svg1 = d3.select("#row1").append("svg").attr("id", "svg1").style("background-color", "#7EC0EE");
+
+  var svg2 = d3.select("#row1").append("svg").style("background-color", "black");
+
+  var svg3 = d3.select("#row2").append("svg").attr("id", "svg3");
+
+  var svg4 = d3.select("#row2").append("svg").attr("id", "svg4");
+
+  // Add Rectangles to svg1
+  svg1.append("rect").attr("x", "30%").attr("y", "20%")
+    .attr("width", "3%").attr("height", "20%").style("fill", "gray");
+
+  svg1.append("rect").attr("x", "60%").attr("y", "20%")
+    .attr("width", "3%").attr("height", "20%").style("fill", "gray");
+
+  svg1.append("rect").attr("x", "65%").attr("y", "20%")
+    .attr("width", "3%").attr("height", "20%").style("fill", "gray");
+
+  svg1.append("rect").attr("x", "30%").attr("y", "70%")
+    .attr("width", "3%").attr("height", "20%").style("fill", "gray");
+
+  svg1.append("rect").attr("x", "35%").attr("y", "70%")
+    .attr("width", "3%").attr("height", "20%").style("fill", "gray");
+
+  svg1.append("rect").attr("x", "60%").attr("y", "70%")
+    .attr("width", "3%").attr("height", "20%").style("fill", "gray");
+
+  svg1.append("rect").attr("x", "65%").attr("y", "85%")
+    .attr("width", "15%").attr("height", "5%").style("fill", "gray");
+
+  // Add Circles to svg2 (solar system)
+  var numberOfStars = getRandomInt(100, 200);
+
+  for (var i = 0; i < numberOfStars; i++) {
+    var x = getRandomInt(0, 100),
+      y = getRandomInt(0, 100);
+
+    svg2.append("circle").attr("cx", x + "%").attr("cy", y + "%")
+      .attr("r", "0.1%").style("fill", "white").style("stroke", "none");
+  }
+
+  var sun = svg2.append("circle").attr("cx", "50%").attr("cy", "50%")
+    .attr("r", "30%").style("fill", "yellow");
+
+  var radiance = svg2.append("circle").attr("cx", "50%").attr("cy", "50%")
+    .attr("r", "35%").style("fill", "rgba(255,255,0,0.1)");
+
+  var mercury = svg2.append("circle").attr("cx", "80%").attr("cy", "40%")
+    .attr("r", "3%").style("fill", "orange");
+
+  var earth = svg2.append("circle").attr("cx", "40%").attr("cy", "70%")
+    .attr("r", "10%").style("fill", "blue");
+
+  // Add Lines to svg3
+  var numLines = getRandomInt(10, 100);
+
+  for (var i = 0; i < numLines; i++) {
+    var svg3Height = document.getElementById("svg3").getBoundingClientRect().height,
+        svg3Width = document.getElementById("svg3").getBoundingClientRect().width;
+
+    var randomX1 = getRandomNumber(0, svg3Width),
+        randomX2 = getRandomNumber(0, svg3Width),
+        randomY1 = getRandomNumber(0, svg3Height),
+        randomY2 = getRandomNumber(0, svg3Height);
+
+    svg3.append("line").attr("x1", randomX1).attr("y1", randomY1)
+      .attr("x2", randomX2).attr("y2", randomY2)
+      .attr("stroke-width", 2).attr("stroke", "black");
+  }
+
+  // Add Polygons to svg4
+  var numPoints = getRandomInt(10, 100);
+
+  var poly = [];
+
+  for (var i = 0; i < numLines; i++) {
+    var svg4Height = document.getElementById("svg4").getBoundingClientRect().height,
+        svg4Width = document.getElementById("svg4").getBoundingClientRect().width;
+
+    var x = getRandomNumber(0, svg4Width),
+        y = getRandomNumber(0, svg3Width);
+
+    var obj = {"x": x, "y": y};
+    poly.push(obj);
+  }
+
+  svg4.selectAll("polygon")
+    .data([poly])
+    .enter().append("polygon")
+    .attr("points", function(d) {
+      return d.map(function(d) {
+        return [d.x, d.y].join(",");
+      }).join(" ");
+    })
+    .attr("stroke", "red")
+    .attr("stroke-width", 1)
+    .style("fill", "red");
+
+  // Add bouncing logo to svg5 with a logo object (function) and start function
+  function Ball(svg, x, y, id, color, aoa, weight) {
+    this.id = id;
+    this.posX = x; // cx
+    this.posY = y; // cy
+    this.color = color;
+    this.radius = weight; // radius and weight same
+    this.jumpSize = 5;
+    this.svg = svg; // parent SVG
+    this.aoa = aoa; // initial angle of attack
+    this.weight = weight;
+
+    if (!this.aoa)
+      this.aoa = Math.PI / 7;
+    if (!this.weight)
+      this.weight = 10;
+    this.radius = this.weight;
+
+    var thisobj = this;
+    this.data = [this.id];
+
+    this.vx = Math.cos(thisobj.aoa) * thisobj.jumpSize; // velocity x
+    this.vy = Math.sin(thisobj.aoa) * thisobj.jumpSize; // velocity y
+    this.initialVx = this.vx;
+    this.initialVy = this.vy;
+    this.initialPosX = this.posX;
+    this.initialPosY = this.posY;
+
+    this.Draw = function() {
+      var svg = thisobj.svg;
+      var ball = svg.selectAll('#' + thisobj.id).data(thisobj.data);
+
+      ball.enter().append("circle")
+        .attr("id", thisobj.id)
+        .attr("r", thisobj.radius)
+        .attr("weight", thisobj.weight)
+        .attr("cx", thisobj.posX)
+        .attr("cy", thisobj.posY)
+        .style("fill", thisobj.color);
+
+      ball.attr("cx", thisobj.posX).attr("cy", thisobj.posY);
+    }
+
+    this.Move = function() {
+      var svg = thisobj.svg;
+
+      thisobj.posX += thisobj.vx;
+      thisobj.posY += thisobj.vy;
+
+      //console.log(thisobj.posX);
+      //console.log(thisobj.posY);
+
+      if (svg5Width <= (thisobj.posX + thisobj.radius)) {
+        thisobj.posX = svg5Width - thisobj.radius - 1;
+        thisobj.aoa = Math.PI - thisobj.aoa;
+        thisobj.vx = -thisobj.vx;
+      }
+
+      if (thisobj.posX < thisobj.radius) {
+        thisobj.posX = thisobj.radius + 1;
+        thisobj.aoa = Math.PI - thisobj.aoa;
+        thisobj.vx = -thisobj.vx;
+      }
+
+      if (svg5Height < (thisobj.posY + thisobj.radius)) {
+        thisobj.posY = svg5Height - thisobj.radius - 1;
+        thisobj.aoa = 2 * Math.PI - thisobj.aoa;
+        thisobj.vy = -thisobj.vy;
+      }
+
+      if (thisobj.posY < thisobj.radius) {
+        thisobj.posY = thisobj.radius + 1;
+        thisobj.aoa = 2 * Math.PI - thisobj.aoa;
+        thisobj.vy = -thisobj.vy;
+      }
+
+      if (thisobj.aoa > 2 * Math.PI)
+        thisobj.aoa = thisobj.aoa - 2 * Math.PI;
+      if (thisobj.aoa < 0)
+        thisobj.aoa = 2 * Math.PI + thisobj.aoa;
+
+      thisobj.color = "blue";
+      thisobj.Draw();
+    }
+  }
+
+  var ballRadius = 50
+  var initX = getRandomInt(ballRadius, svg5Width - ballRadius),
+      initY = getRandomInt(ballRadius, svg5Height - ballRadius);
+  var ball = new Ball(svg5, initX, initY, 'ball', 'red', getRandomNumber(0, Math.PI), ballRadius);
+
+  initX = getRandomInt(ballRadius, svg5Width - ballRadius),
+  initY = getRandomInt(ballRadius, svg5Height - ballRadius);
+  var ball1 = new Ball(svg5, 100, 100, 'ball1', 'blue', getRandomNumber(0, Math.PI), ballRadius);
+
+  ball.Draw();
+  ball1.Draw();
+
+  timer = d3.timer(function() {
+    var r = ball.Move();
+    var r1= ball1.Move();
+    svg5Height = document.getElementById("svg5").getBoundingClientRect().height;
+    svg5Width = document.getElementById("svg5").getBoundingClientRect().width;
+  }, 500);
+
+
+
+  // Helper functions
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+</script>
+
+</html>
