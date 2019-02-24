@@ -1,0 +1,131 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* After reset */
+#counties .active {
+  fill: rgb(255, 255, 0, 0.2) !important;
+}
+
+#circleGroup2 {
+  opacity: 0.5;
+}
+
+#circleGroup3 {
+  opacity: 0.3;
+}
+
+body {
+  font-family: sans-serif;
+  height: 100%;
+  /* background-color: hsl(171, 100%, 41%); */
+}
+
+#info {
+  line-height: 20px;
+  margin-top: 10px;
+  margin-left: 5px;
+  height: 20px;
+  font-size: 16px;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+svg {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  background-color: white;
+  border-style: solid;
+  border-width: 2px;
+  float: left
+}
+
+.legend {
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: 2px 2px 1px #888;
+}
+
+#listDiv {
+  width: 500px;
+  float: left;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+ul {
+  border-style: solid;
+  border-width: 2px;
+  background-color: white;
+  list-style: none;
+  max-height: 600px;
+  overflow: auto;
+  text-indent: 10px;
+}
+
+li {
+  line-height: 25px;
+}
+
+li:nth-child(even) {
+  background: hsl(0, 0%, 96%);
+}
+
+li>a {
+  cursor: pointer;
+}
+
+.selected {
+  fill: blue;
+}
