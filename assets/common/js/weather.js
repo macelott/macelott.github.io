@@ -39,10 +39,10 @@ window.addEventListener('load', () => {
           degreeSection.addEventListener('click', () => {
             if (temperatureSpan.textContent === "F") {
               temperatureSpan.textContent = "C";
-              temperatureDegree.textContent = Math.round(farenheit);
+              temperatureDegree.textContent = Math.round(temperature);
             } else {
               temperatureSpan.textContent = "F";
-              temperatureDegree.textContent = Math.round(temperature);
+              temperatureDegree.textContent = Math.round(farenheit);
             }
           })
         })
